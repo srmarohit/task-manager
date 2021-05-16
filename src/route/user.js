@@ -29,6 +29,7 @@ router.get('/users/me', auth, async (req, res) => {
         await user.save();
         subscribeMail(user.email, user.name);
         const token = await user.generateAuthToken();
+        
         res.status(201).send({user, token});
     }
     catch (e) {
